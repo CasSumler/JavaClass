@@ -4,9 +4,14 @@ public class Circle
 {
     private double radius;
 
-    public void setRadius(double radius)
+    public Circle(double radius)
     {
         this.radius = radius;
+    }
+
+    public double getRadius()
+    {
+        return radius;
     }
 
     public double getDiameter()
@@ -16,6 +21,6 @@ public class Circle
 
     public double getArea()
     {
-        return 3.14 * radius * radius;
+        return Math.PI * (radius * radius);
     }
 }
