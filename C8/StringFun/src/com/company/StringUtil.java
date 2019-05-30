@@ -59,9 +59,96 @@ public class StringUtil
         }
     }
 
-    public static String printPhoneNumber(String text)
+    public static void printPhoneNumber(String text)
     {
-        return "Area Code: " + text.substring(0, 3) + "  Exchange: " + text.substring(4, 7) + "  Line Number: " + text.substring(8, 12);
+        String decodedPhoneNumber = decodedPhoneNumber(text);
+
+        int startAreaCodeIndex = 0;
+        int startExchangeIndex = 4;
+        int startLineIndex = 8;
+
+        if (decodedPhoneNumber.length() == 10)
+        {
+            startExchangeIndex = 3;
+            startLineIndex = 6;
+        }
+
+        String areaCode = decodedPhoneNumber.substring(startAreaCodeIndex, startAreaCodeIndex + 3);
+        String exchange = decodedPhoneNumber.substring(startExchangeIndex, startExchangeIndex + 3);
+        String lineNumber = decodedPhoneNumber.substring(startLineIndex);
+
+        System.out.print("Area Code: " + areaCode + "   ");
+        System.out.print("Exchange: " + exchange + "   ");
+        System.out.println("Line Number: " + lineNumber);
+    }
+
+    public static String decodedPhoneNumber(String text)
+    {
+        String decodedPhoneNumber = "";
+
+        int index = 0;
+        while (index < text.length())
+        {
+            char digit = text.charAt(index);
+            decodedPhoneNumber += decodedPhoneDigit(digit);
+            index++;
+        }
+
+        return decodedPhoneNumber;
+    }
+
+    public static String decodedPhoneDigit(char text)
+    {
+        String decodedValue;
+        switch (text)
+        {
+            case 'A':
+            case 'B':
+            case 'C':
+                decodedValue = "2";
+                break;
+            case 'D':
+            case 'E':
+            case 'F':
+                decodedValue = "3";
+                break;
+            case 'G':
+            case 'H':
+            case 'I':
+                decodedValue = "4";
+                break;
+            case 'J':
+            case 'K':
+            case 'L':
+                decodedValue = "5";
+                break;
+            case 'M':
+            case 'N':
+            case 'O':
+                decodedValue = "6";
+                break;
+            case 'P':
+            case 'Q':
+            case 'R':
+            case 'S':
+                decodedValue = "7";
+                break;
+            case 'T':
+            case 'U':
+            case 'V':
+                decodedValue = "8";
+                break;
+            case 'W':
+            case 'X':
+            case 'Y':
+            case 'Z':
+                decodedValue = "9";
+                break;
+            default:
+                decodedValue = "" + text;
+
+        }
+        return decodedValue;
     }
 
     public static int findFirstE(String text)
@@ -79,6 +166,4 @@ public class StringUtil
         }
         return false;
     }
-
-
 }

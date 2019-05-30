@@ -36,9 +36,10 @@ public class Main
         StringUtil.printCharacters(hello);
         StringUtil.printCharacters(goodbye);
 
-        //Phone Number
-        System.out.println(StringUtil.printPhoneNumber("501-555-0100"));
-        System.out.println(StringUtil.printPhoneNumber("501-912-8565"));
+        //Phone Number Bronze and Silver
+        StringUtil.printPhoneNumber("501-867-5309");
+        StringUtil.printPhoneNumber("5018675309");
+        StringUtil.printPhoneNumber("J01TMPKD0W");
 
         //Find First E
         System.out.println("First E: " + StringUtil.findFirstE(hello));
