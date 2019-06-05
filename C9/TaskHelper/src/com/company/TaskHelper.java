@@ -12,7 +12,7 @@ public class TaskHelper
     {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Type Add, Peek, Remove, HowMany, List, Flee, or Exit.");
+        System.out.println("Type Add, Peek, Remove, HowMany, List, Flee, Wait, Check or Exit.");
 
         boolean keepRunning = true;
 
@@ -41,6 +41,14 @@ public class TaskHelper
                 case "FLEE":
                     flee();
                     break;
+                case "WAIT":
+                    task = input.next();
+                    pause(task);
+                    break;
+                case "CHECK":
+                    task = input.next();
+                    check(task);
+                    break;
                 case "EXIT":
                     keepRunning = false;
                     break;
@@ -53,7 +61,14 @@ public class TaskHelper
 
     private void add(String task)
     {
-        taskQueue.add(task);
+        if(taskQueue.contains(task))
+        {
+            System.out.println("You've already added that.");
+        }
+        else
+        {
+            taskQueue.add(task);
+        }
     }
 
     private void peek()
@@ -86,6 +101,25 @@ public class TaskHelper
         taskQueue.clear();
         System.out.println("The list has been cleared.");
         list();
+    }
+
+    private void pause(String task)
+    {
+        taskQueue.remove(task);
+        taskQueue.add(task);
+        list();
+    }
+
+    private void check(String task)
+    {
+        if(taskQueue.contains(task))
+        {
+            System.out.println("Fortunately, you already know about that one.");
+        }
+        else
+        {
+            System.out.println("Sadly, that task is not on the list.");
+        }
     }
 
 }
